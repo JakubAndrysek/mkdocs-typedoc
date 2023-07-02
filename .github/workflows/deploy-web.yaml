@@ -1,0 +1,27 @@
+name: Build and deploy docs to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+      - run: npm install typedoc --save-dev
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: python -m pip install -e .\[dev\]
+      - run: make fixRelativeLinkDocs
+      - run: mkdocs gh-deploy --force

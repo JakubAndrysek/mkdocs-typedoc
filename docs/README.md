@@ -1,16 +1,5 @@
 # Mkdocs-Typedoc Plugin
 
-<p align="center">
-<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJakubAndrysek%2Fmkdocs-typedoc&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true"/></a>
-<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://pypi.org/project/mkdocs-typedoc/" target="_blank"><img alt="PyPI" src="https://img.shields.io/pypi/v/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/forks" target="_blank"><img src="https://img.shields.io/github/forks/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/issues" target="_blank"><img src="https://img.shields.io/github/issues/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/discussions" target="_blank"><img src="https://img.shields.io/github/discussions/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
-<a href="https://pypistats.org/packages/mkdocs-typedoc" target="_blank"><img src="https://static.pepy.tech/personalized-badge/mkdocs-typedoc?period=month&units=international_system&left_color=black&right_color=orange&left_text=Downloads"></a>
-</p>
-
 The Mkdocs-Typedoc Plugin is designed to integrate TypeDoc documentation with your MkDocs project.
 
 ## Installation

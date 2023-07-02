@@ -1,0 +1,102 @@
+site_name: MkDocs - TypeDoc Plugin
+site_url: https://typedoc.kubaandrysek.cz/
+site_author: Jakub Andrýsek
+site_description: >-
+  The Mkdocs-Typedoc Plugin is designed to integrate TypeDoc documentation with your MkDocs project.
+
+# Repository
+repo_name: JakubAndrysek/mkdocs-typedoc
+repo_url: https://github.com/JakubAndrysek/mkdocs-typedoc
+edit_uri: edit/main/docs/
+
+use_directory_urls: True
+
+# Copyright
+copyright: Copyright © 2023 Jakub Andrýsek
+
+theme:
+  name: material
+  language: en
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - content.action.edit
+    - content.action.view
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+  icon:
+    repo: fontawesome/brands/github
+
+
+  palette:
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/JakubAndrysek
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/KubaAndrysek
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/jakub-andrysek/
+  analytics:
+    provider: google
+#    property: G-
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback!
+
+plugins:
+  - search
+  - open-in-new-tab
+  - glightbox
+  - social
+  - typedoc:
+      source: './ts-examples/@types/*.d.ts' # or whatever you want to document
+      output_dir: 'typedocApi' # optional, default: 'typedoc'
+      tsconfig: './ts-examples/tsconfig.json' # path to tsconfig.json
+      options: 'typedoc.json' # path to typedoc.json file with more options
+      name: 'API Doc' # optional, default: 'TypeDoc API'
+
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+
+nav:
+  - Home: 'README.md'
+  - TypeDoc API: '/typedocApi'
