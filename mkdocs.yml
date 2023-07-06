@@ -80,7 +80,6 @@ plugins:
   - search
   - open-in-new-tab
   - glightbox
-  - social
   - typedoc:
       source: './ts-examples/@types/*.d.ts' # or whatever you want to document
       output_dir: 'typedocApi' # optional, default: 'typedoc'

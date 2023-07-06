@@ -37,11 +37,18 @@ class TypeDocPlugin(BasePlugin):
 		# Path to the generated documentation
 		doc_path = os.path.join(config["site_dir"], output_dir)
 
+		if not os.path.exists(doc_path):
+			os.makedirs(doc_path)
+
 		# Name for the generated documentation
 		typedoc_name = self.config['name']
 
 		# Path to the tsconfig file
 		tsconfig_path = self.config['tsconfig']
+
+		if not os.path.exists(tsconfig_path):
+			log.error("tsconfig.json file does not exist. Please create it or change the path in mkdocs.yml.")
+			return files
 
 		# Check if Node.js is installed
 		if not self.is_node_installed():
@@ -73,6 +80,9 @@ class TypeDocPlugin(BasePlugin):
 		except subprocess.CalledProcessError as e:
 			log.error("TypeDoc failed with error code %d" % e.returncode)
 			return files
+		except Exception as e:
+			log.error(f"TypeDoc failed with error: {e}")
+			return files
 
 		# Add generated TypeDoc documentation to MkDocs
 		for dirpath, dirnames, filenames in os.walk(doc_path):
@@ -90,10 +100,16 @@ class TypeDocPlugin(BasePlugin):
 			return result.returncode == 0
 		except subprocess.CalledProcessError:
 			return False
+		except Exception as e:
+			log.error(f"TypeDoc: Node.js failed with error: {e}")
+			return False
 
 	def is_typedoc_installed(self):
 		try:
 			result = subprocess.run(["npx", "typedoc", "--version"], check=True, capture_output=True, text=True)
 			return result.returncode == 0
 		except subprocess.CalledProcessError:
+			return False
+		except Exception as e:
+			log.error(f"TypeDoc: TypeDoc failed with error: {e}")
 			return False

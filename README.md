@@ -26,7 +26,7 @@ Ensure that you have [Node.js](https://nodejs.org/en/) installed in your system.
 Also, install [TypeDoc](https://typedoc.org/) using [NPM](https://www.npmjs.com/):
 
 ```bash
-npm install typedoc --save-dev
+npm install typedoc typescript --save-dev
 ```
 
 ## Usage
