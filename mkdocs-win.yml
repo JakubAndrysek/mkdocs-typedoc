@@ -86,7 +86,7 @@ plugins:
       tsconfig: './ts-examples/tsconfig.json' # path to tsconfig.json
       options: 'typedoc.json' # path to typedoc.json file with more options
       name: 'API Doc' # optional, default: 'TypeDoc API'
-      disable_system_check: False # optional, default: False
+      disable_system_check: True # optional, default: False
 
 
 markdown_extensions:

@@ -1,5 +1,16 @@
 # Mkdocs-Typedoc Plugin
 
+<p align="center">
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJakubAndrysek%2Fmkdocs-typedoc&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true"/></a>
+<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://pypi.org/project/mkdocs-typedoc/" target="_blank"><img alt="PyPI" src="https://img.shields.io/pypi/v/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/forks" target="_blank"><img src="https://img.shields.io/github/forks/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/issues" target="_blank"><img src="https://img.shields.io/github/issues/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://github.com/JakubAndrysek/mkdocs-typedoc/discussions" target="_blank"><img src="https://img.shields.io/github/discussions/JakubAndrysek/mkdocs-typedoc?style=flat-square"></a>
+<a href="https://pypistats.org/packages/mkdocs-typedoc" target="_blank"><img src="https://static.pepy.tech/personalized-badge/mkdocs-typedoc?period=month&units=international_system&left_color=black&right_color=orange&left_text=Downloads"></a>
+</p>
+
 The Mkdocs-Typedoc Plugin is designed to integrate TypeDoc documentation with your MkDocs project.
 
 ## Installation
@@ -15,7 +26,7 @@ Ensure that you have [Node.js](https://nodejs.org/en/) installed in your system.
 Also, install [TypeDoc](https://typedoc.org/) using [NPM](https://www.npmjs.com/):
 
 ```bash
-npm install typedoc --save-dev
+npm install typedoc typescript --save-dev
 ```
 
 ## Usage
@@ -30,6 +41,7 @@ plugins:
       tsconfig: './ts-examples/tsconfig.json'
       options: 'typedoc.json'
       name: 'API Doc'
+      disable_system_check: False
 ```
 
 - `source` (required): The path to your TypeScript source code.
@@ -37,8 +49,23 @@ plugins:
 - `tsconfig` (required): The path to the tsconfig file for your project.
 - `options` (optional): The path to the typedoc.json options file with more options.
 - `name` (optional): The name for the generated documentation. Default is "TypeDoc API".
+- `disable_system_check` (optional): Disable the TypeScript system check. Default is False.
 
 The plugin will generate TypeDoc documentation into the output directory specified.
+
+## Windows machines
+
+System might not work on Windows machines, if you would like to test it on Windows, set `disable_system_check` to `True`.
+
+Error message:
+
+```bash
+INFO     -  Building documentation...
+INFO     -  Cleaning site directory
+ERROR    -  TypeDoc: TypeDoc failed with error: [WinError 2] The system cannot find the file specified
+```
+
+If anyone knows how to fix this, please let me know or create a pull request.
 
 ## Contributing
 
