@@ -15,6 +15,7 @@ from mkdocs.structure.files import File
 
 log: logging.Logger = logging.getLogger("mkdocs")
 
+
 class TypeDocPlugin(BasePlugin):
 
     config_scheme = (
@@ -23,16 +24,9 @@ class TypeDocPlugin(BasePlugin):
         ('tsconfig', config_options.Type(str, required=True)),
         ('options', config_options.Type(str, required=False)),
         ('name', config_options.Type(str, required=False, default="TypeDoc API")),
-        ('disable_system_check', config_options.Type(bool, required=False, default=False)),
     )
 
     def on_files(self, files, config):
-
-        # Check if the script is running on a Windows machine
-        if os.name == 'nt' and self.config.get('disable_system_check') == False:
-            log.error("Typedoc extension does not not run on Windows machines. Please use a Linux or macOS machine. See https://typedoc.kubaandrysek.cz/")
-            return files
-
         # Path to your TypeScript source code
         src_path = self.config['source']
 
@@ -82,7 +76,7 @@ class TypeDocPlugin(BasePlugin):
             # Flattening the list of pairs to pass into subprocess.run
             flattened_config = [item for pair in typedoc_config for item in pair]
 
-            command = ["npx", "typedoc", *flattened_config, src_path]
+            command = [self.get_npx_filename(), "typedoc", *flattened_config, src_path]
             subprocess.run(command, check=True)
         except subprocess.CalledProcessError as e:
             log.error("TypeDoc failed with error code %d" % e.returncode)
@@ -100,6 +94,8 @@ class TypeDocPlugin(BasePlugin):
 
         return files
 
+    def get_npx_filename(self):
+        return "npx.cmd" if os.name == "nt" else "npx"
 
     def is_node_installed(self):
         try:
@@ -113,7 +109,8 @@ class TypeDocPlugin(BasePlugin):
 
     def is_typedoc_installed(self):
         try:
-            result = subprocess.run(["npx", "typedoc", "--version"], check=True, capture_output=True, text=True)
+            result = subprocess.run([self.get_npx_filename(), "typedoc", "--version"], check=True,
+                                    capture_output=True, text=True)
             return result.returncode == 0
         except subprocess.CalledProcessError:
             return False
