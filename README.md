@@ -53,20 +53,6 @@ plugins:
 
 The plugin will generate TypeDoc documentation into the output directory specified.
 
-## Windows machines
-
-System might not work on Windows machines, if you would like to test it on Windows, set `disable_system_check` to `True`.
-
-Error message:
-
-```bash
-INFO     -  Building documentation...
-INFO     -  Cleaning site directory
-ERROR    -  TypeDoc: TypeDoc failed with error: [WinError 2] The system cannot find the file specified
-```
-
-If anyone knows how to fix this, please let me know or create a pull request.
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
