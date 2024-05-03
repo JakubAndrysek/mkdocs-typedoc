@@ -31,7 +31,6 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
-
   palette:
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -61,7 +60,7 @@ extra:
       link: https://www.linkedin.com/in/jakub-andrysek/
   analytics:
     provider: google
-#    property: G-
+    #    property: G-
     feedback:
       title: Was this page helpful?
       ratings:
@@ -81,13 +80,13 @@ plugins:
   - open-in-new-tab
   - glightbox
   - typedoc:
-      source: './ts-examples/@types/*.d.ts' # or whatever you want to document
-      output_dir: 'typedocApi' # optional, default: 'typedoc'
-      tsconfig: './ts-examples/tsconfig.json' # path to tsconfig.json
-      options: 'typedoc.json' # path to typedoc.json file with more options
-      name: 'API Doc' # optional, default: 'TypeDoc API'
+      source: "./ts-examples/@types/*.d.ts" # or whatever you want to document
+      output_dir: "typedocApi" # optional, default: 'typedoc'
+      tsconfig: "./ts-examples/tsconfig.json" # path to tsconfig.json
+      options: "typedoc.json" # path to typedoc.json file with more options
+      name: "API Doc" # optional, default: 'TypeDoc API'
       disable_system_check: False # optional, default: False
-
+      tile_link: "/" # optional, default: '/'
 
 markdown_extensions:
   - pymdownx.highlight
@@ -98,5 +97,5 @@ markdown_extensions:
   - attr_list
 
 nav:
-  - Home: 'README.md'
-  - TypeDoc API: '/typedocApi'
+  - Home: "README.md"
+  - TypeDoc API: "/typedocApi"

@@ -19,21 +19,22 @@ log: logging.Logger = logging.getLogger("mkdocs")
 class TypeDocPlugin(BasePlugin):
 
     config_scheme = (
-        ('source', config_options.Type(str, required=True)),
-        ('output_dir', config_options.Type(str, required=False, default="typedoc")),
-        ('tsconfig', config_options.Type(str, required=True)),
-        ('options', config_options.Type(str, required=False)),
-        ('name', config_options.Type(str, required=False, default="TypeDoc API")),
+        ("source", config_options.Type(str, required=True)),
+        ("output_dir", config_options.Type(str, required=False, default="typedoc")),
+        ("tsconfig", config_options.Type(str, required=True)),
+        ("options", config_options.Type(str, required=False)),
+        ("name", config_options.Type(str, required=False, default="TypeDoc API")),
+        ("tile_link", config_options.Type(str, required=False, default="/")),
     )
 
     def on_files(self, files, config):
         # Path to your TypeScript source code
-        src_path = self.config['source']
+        src_path = self.config["source"]
 
         # Path to the typedoc.json options file
-        typedoc_options = self.config.get('options')
+        typedoc_options = self.config.get("options")
 
-        output_dir = self.config['output_dir']
+        output_dir = self.config["output_dir"]
 
         # Path to the generated documentation
         doc_path = os.path.join(config["site_dir"], output_dir)
@@ -42,23 +43,29 @@ class TypeDocPlugin(BasePlugin):
             os.makedirs(doc_path)
 
         # Name for the generated documentation
-        typedoc_name = self.config['name']
+        typedoc_name = self.config["name"]
 
         # Path to the tsconfig file
-        tsconfig_path = self.config['tsconfig']
+        tsconfig_path = self.config["tsconfig"]
 
         if not os.path.exists(tsconfig_path):
-            log.error("tsconfig.json file does not exist. Please create it or change the path in mkdocs.yml.")
+            log.error(
+                "tsconfig.json file does not exist. Please create it or change the path in mkdocs.yml."
+            )
             return files
 
         # Check if Node.js is installed
         if not self.is_node_installed():
-            log.error("Node.js is not installed. Please install it from https://nodejs.org/en/download/.")
+            log.error(
+                "Node.js is not installed. Please install it from https://nodejs.org/en/download/."
+            )
             return files
 
         # Check if TypeDoc is installed
         if not self.is_typedoc_installed():
-            log.error("TypeDoc is not installed. Please install it with `npm install typedoc --save-dev`. See https://typedoc.kubaandrysek.cz for more information.")
+            log.error(
+                "TypeDoc is not installed. Please install it with `npm install typedoc --save-dev`. See https://typedoc.kubaandrysek.cz for more information."
+            )
             return files
 
         # Build TypeDoc documentation
@@ -67,7 +74,7 @@ class TypeDocPlugin(BasePlugin):
                 ("--out", doc_path),
                 ("--name", typedoc_name),
                 ("--tsconfig", tsconfig_path),
-                ("--titleLink", "/"),
+                ("--titleLink", self.config.get("tile_link", "/")),
             ]
 
             if typedoc_options:
@@ -90,7 +97,14 @@ class TypeDocPlugin(BasePlugin):
             for filename in filenames:
                 abs_src_path = os.path.join(dirpath, filename)
                 doc_rel_path = os.path.relpath(abs_src_path, config["site_dir"])
-                files.append(File(doc_rel_path, config["site_dir"], config["site_dir"], config["use_directory_urls"]))
+                files.append(
+                    File(
+                        doc_rel_path,
+                        config["site_dir"],
+                        config["site_dir"],
+                        config["use_directory_urls"],
+                    )
+                )
 
         return files
 
@@ -99,7 +113,9 @@ class TypeDocPlugin(BasePlugin):
 
     def is_node_installed(self):
         try:
-            result = subprocess.run(["node", "--version"], check=True, capture_output=True, text=True)
+            result = subprocess.run(
+                ["node", "--version"], check=True, capture_output=True, text=True
+            )
             return result.returncode == 0
         except subprocess.CalledProcessError:
             return False
@@ -109,8 +125,12 @@ class TypeDocPlugin(BasePlugin):
 
     def is_typedoc_installed(self):
         try:
-            result = subprocess.run([self.get_npx_filename(), "typedoc", "--version"], check=True,
-                                    capture_output=True, text=True)
+            result = subprocess.run(
+                [self.get_npx_filename(), "typedoc", "--version"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
             return result.returncode == 0
         except subprocess.CalledProcessError:
             return False

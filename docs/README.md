@@ -42,6 +42,7 @@ plugins:
       options: 'typedoc.json'
       name: 'API Doc'
       disable_system_check: False
+      tile_link: "/" # optional, default: '/'
 ```
 
 - `source` (required): The path to your TypeScript source code.
@@ -50,29 +51,16 @@ plugins:
 - `options` (optional): The path to the typedoc.json options file with more options.
 - `name` (optional): The name for the generated documentation. Default is "TypeDoc API".
 - `disable_system_check` (optional): Disable the TypeScript system check. Default is False.
+- `tile_link` (optional): The link from TypeDoc back to the main page. Default is "/".
 
 The plugin will generate TypeDoc documentation into the output directory specified.
-
-## Windows machines
-
-System might not work on Windows machines, if you would like to test it on Windows, set `disable_system_check` to `True`.
-
-Error message:
-
-```bash
-INFO     -  Building documentation...
-INFO     -  Cleaning site directory
-ERROR    -  TypeDoc: TypeDoc failed with error: [WinError 2] The system cannot find the file specified
-```
-
-If anyone knows how to fix this, please let me know or create a pull request.
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Do You Enjoy My Work?
-Then definitely consider:
+Then you can consider:
 
 - supporting me on GitHub Sponsors: [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/jakubandrysek)
 
