@@ -24,7 +24,7 @@ class TypeDocPlugin(BasePlugin):
         ("tsconfig", config_options.Type(str, required=True)),
         ("options", config_options.Type(str, required=False)),
         ("name", config_options.Type(str, required=False, default="TypeDoc API")),
-        ("tile_link", config_options.Type(str, required=False, default="/")),
+        ("title_link", config_options.Type(str, required=False, default="/")),
     )
 
     def on_files(self, files, config):
@@ -74,7 +74,7 @@ class TypeDocPlugin(BasePlugin):
                 ("--out", doc_path),
                 ("--name", typedoc_name),
                 ("--tsconfig", tsconfig_path),
-                ("--titleLink", self.config.get("tile_link", "/")),
+                ("--titleLink", self.config.get("title_link", "/")),
             ]
 
             if typedoc_options:
